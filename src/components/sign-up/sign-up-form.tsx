@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { ChangeEvent } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
 import { toast } from 'sonner'
 
 import { Button } from '~/components/ui/button'
@@ -23,6 +23,7 @@ import { Input } from '~/components/ui/input'
 import { RegistrationForm, registrationSchema } from '~/schemas/sign-up-form'
 import { authService } from '~/services/auth-service'
 import { cepService } from '~/services/cep-service'
+import { GenericErrorResponse } from '~/types/generic-error-response'
 
 export function SignUpForm() {
   const router = useRouter()
@@ -66,7 +67,7 @@ export function SignUpForm() {
       toast.success('Registration Successful', { id: 'registration-form' })
       router.push('/login')
     },
-    onError: (error: AxiosError<{ message?: string }>) => {
+    onError: (error: GenericErrorResponse) => {
       toast.error(error?.response?.data?.message ?? 'An error occurred', {
         id: 'registration-form',
       })
@@ -100,7 +101,6 @@ export function SignUpForm() {
         <h1 className="mb-6 text-center text-2xl font-bold">
           User Registration
         </h1>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
@@ -264,7 +264,13 @@ export function SignUpForm() {
               {registrationMutation.isPending ? 'Registering...' : 'Register'}
             </Button>
           </form>
-        </Form>
+        </Form>{' '}
+        <div className="mt-4 text-center text-sm">
+          Already have an account?{' '}
+          <Link href="sign-in" className="underline">
+            Sign in
+          </Link>
+        </div>
       </div>
     </div>
   )
