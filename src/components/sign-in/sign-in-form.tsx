@@ -94,7 +94,7 @@ export function SignInForm() {
                   <FormLabel className="flex items-center">
                     Password
                     <Link
-                      href="#"
+                      href="reset-password"
                       className="ml-auto inline-block text-sm underline"
                     >
                       Forgot your password?
