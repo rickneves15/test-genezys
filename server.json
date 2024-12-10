@@ -1,3 +1,19 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "275b",
+      "fullName": "Rick Neves",
+      "email": "ricknevesbc@hotmail.com",
+      "password": "Fv17:Zj@o&#y8%9+",
+      "confirmPassword": "Fv17:Zj@o&#y8%9+",
+      "address": {
+        "street": "Rua Santa Terezinha",
+        "number": "123",
+        "neighborhood": "São Francisco de Assis",
+        "city": "Camboriú",
+        "state": "SC",
+        "cep": "88340-724"
+      }
+    }
+  ]
 }
